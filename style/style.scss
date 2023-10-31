@@ -1,0 +1,172 @@
+:root {
+    --bg: rgb(32, 32, 32);
+    --fg: #ffffff;
+
+    --progress-bar-bg-color: #5c5c5c;
+    --progress-bar-indicator: white;
+
+    --green: #006e00;
+    --red: #d10000;
+
+    --h1-font-size: 3.5rem;
+    --h2-font-size: 1.75rem;
+    --h3-font-size: 1.5rem;
+    --p-font-size: 1.5rem;
+    --clock-h1-font-size: 6rem;
+    --clock-p-font-size: 2.5rem;
+}
+
+@font-face {
+    font-family: "Rubik Mono One";
+    src: url("../fonts/RubikMonoOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Roboto Mono";
+    src: url("../fonts/RobotoMono-Regular.ttf");
+}
+
+.green { background-color: var(--green) }
+.red{ background-color: var(--red) }
+
+.reverse {
+    color: var(--bg);
+    background-color: var(--fg);
+}
+
+.unreverse {
+    color: var(--fg);
+    background-color: var(--bg);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto Mono", 'Courier New', Courier, monospace;
+}
+
+.header {
+    font-family: "Rubik Mono One";
+}
+
+body {
+    margin: 0;
+    color: var(--fg);
+    background-color: var(--bg);
+}
+
+.noscript {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: var(--bg);
+}
+
+h1, h1 span, h2, h2 span {
+    font-family: "Rubik Mono One";
+}
+
+h1 {
+    font-size: var(--h1-font-size);
+    width: fit-content;
+    padding: 0 8px;
+}
+
+h2 {
+    font-size: var(--h2-font-size);
+}
+
+h3 {
+    font-size: var(--h3-font-size);
+}
+
+p {
+    font-size: var(--p-font-size);
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    width: 100%;
+    padding: 24px 32px;
+
+    &.full_height {
+        height: 100vh;
+    }
+
+    > div {
+        max-width: 1500px;
+        margin: 0 auto;
+    }
+}
+
+.clock {
+    display: flex;
+    flex-wrap: wrap;
+
+    margin: 2rem 0;
+
+    .block {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            font-size: var(--clock-h1-font-size);
+            text-align: center;
+            width: fit-content;
+
+            margin: 1rem 0;
+        }
+
+        p {
+            font-size: var(--clock-p-font-size);
+            text-align: center;
+
+            margin: 0;
+            width: fit-content;
+        }
+    }
+}
+
+.right_align {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    text-align: end;
+}
+
+#info_display {
+    p {
+        margin: 8px;
+    }
+}
+
+@media (max-width: 1400px) {
+    :root {
+        --h1-font-size: 2.75rem;
+        --h2-font-size: 1.25rem;
+        --h3-font-size: 1.05rem;
+        --p-font-size: 1.05rem;
+        --clock-h1-font-size: 4rem;
+        --clock-p-font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 900px) {
+    :root {
+        --h1-font-size: 2rem;
+        --h2-font-size: 1rem;
+        --h3-font-size: 1rem;
+        --p-font-size: 1rem;
+        --clock-h1-font-size: 3rem;
+        --clock-p-font-size: 1rem;
+    }
+}
