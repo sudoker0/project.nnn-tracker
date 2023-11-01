@@ -52,7 +52,7 @@ const tzMap = {
     "+13:45": "Pacific/Chatham",
     "-10:30": "Pacific/Marquesas"
 };
-const timeServer = "http://worldtimeapi.org/api/timezone";
+const timeServer = "https://worldtimeapi.org/api/timezone";
 HTMLElement.prototype.replace = function (data, prefix = "$_") {
     const alternate_prefix = "id_dlr_";
     const _this = () => this;

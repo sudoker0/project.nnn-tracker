@@ -49,7 +49,7 @@ const tzMap = {
 }
 
 //? For time synchronization
-const timeServer = "http://worldtimeapi.org/api/timezone"
+const timeServer = "https://worldtimeapi.org/api/timezone"
 
 interface Template {
     [key: string]: string
