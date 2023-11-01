@@ -166,15 +166,17 @@ function mainErrorReporting(content) {
 var updateTimeOffsetInterval = null;
 function updateTimeOffset() {
     return __awaiter(this, void 0, void 0, function* () {
+        const startTime = performance.now();
         const data = yield getTimeFromAPI();
+        const endTime = performance.now();
         if (data.status) {
-            const diff = ((new Date()).getTime() - (new Date(data.content)).getTime()) / 1000;
+            const diff = (((new Date()).getTime() - (new Date(data.content)).getTime() - (endTime - startTime)) / 1000);
             if (diff > 10) {
                 mainErrorReporting(`Incorrect time reported by the browser (time difference was reported to be ${diff} seconds). Please re-sync your system clock, or change the system clock manually to the correct time, then reload the page.`);
                 return;
             }
             qSel("#info_display").replace({
-                "time_offset": diff.toString(),
+                "time_offset": diff.toFixed(3),
                 "timezone": tzStr
             });
         }

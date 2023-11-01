@@ -142,6 +142,7 @@ async function getTimeFromAPI() {
         status: true,
         content: {}
     }
+
     try {
         const req = await fetch(`${timeServer}/${tzMap[tzStr]}`)
         const res = await req.json()
@@ -188,9 +189,12 @@ function mainErrorReporting(content: string) {
 
 var updateTimeOffsetInterval = null
 async function updateTimeOffset() {
+    const startTime = performance.now()
     const data = await getTimeFromAPI()
+    const endTime = performance.now()
+
     if (data.status) {
-        const diff = ((new Date()).getTime() - (new Date(data.content as string)).getTime()) / 1000
+        const diff = (((new Date()).getTime() - (new Date(data.content as string)).getTime() - (endTime - startTime)) / 1000)
 
         if (diff > 10) {
             mainErrorReporting(`Incorrect time reported by the browser (time difference was reported to be ${diff} seconds). Please re-sync your system clock, or change the system clock manually to the correct time, then reload the page.`)
@@ -198,7 +202,7 @@ async function updateTimeOffset() {
         }
 
         qSel("#info_display").replace({
-            "time_offset": diff.toString(),
+            "time_offset": diff.toFixed(3),
             "timezone": tzStr
         })
     } else {
