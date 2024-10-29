@@ -52,7 +52,7 @@ const tzMap = {
     "+13:45": "Pacific/Chatham",
     "-10:30": "Pacific/Marquesas"
 };
-const timeServer = "https://worldtimeapi.org/api/timezone";
+const timeServer = "https://www.timeapi.io/api/time/current/zone";
 HTMLElement.prototype.replace = function (data, prefix = "$_") {
     const alternate_prefix = "id_dlr_";
     const _this = () => this;
@@ -127,14 +127,14 @@ function getTimeFromAPI() {
             content: {}
         };
         try {
-            const req = yield fetch(`${timeServer}/${tzMap[tzStr]}`);
+            const req = yield fetch(`${timeServer}?timeZone=${encodeURIComponent(tzMap[tzStr])}`);
             const res = yield req.json();
-            const tzString = res["datetime"];
+            const tzString = res["dateTime"];
             out.content = new Date(tzString);
         }
         catch (e) {
             out.status = false;
-            out.content = "Unable to connect to the WorldTimeAPI, or an invalid response is provided.\n" +
+            out.content = "Unable to connect to the time API.\n" +
                 "Please file an Issue on the GitHub page for this project.\n" +
                 `Details: ${e}`;
         }
@@ -160,8 +160,6 @@ function mainErrorReporting(content) {
         "error_content": content
     });
     qSel("#main_error").classList.remove("hidden");
-    qSel("#main").classList.add("hidden");
-    throw new Error();
 }
 var updateTimeOffsetInterval = null;
 function updateTimeOffset() {

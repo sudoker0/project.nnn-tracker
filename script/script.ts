@@ -49,7 +49,7 @@ const tzMap = {
 }
 
 //? For time synchronization
-const timeServer = "https://worldtimeapi.org/api/timezone"
+const timeServer = "https://www.timeapi.io/api/time/current/zone"
 
 interface Template {
     [key: string]: string
@@ -144,14 +144,14 @@ async function getTimeFromAPI() {
     }
 
     try {
-        const req = await fetch(`${timeServer}/${tzMap[tzStr]}`)
+        const req = await fetch(`${timeServer}?timeZone=${encodeURIComponent(tzMap[tzStr])}`)
         const res = await req.json()
 
-        const tzString: string = res["datetime"]
+        const tzString: string = res["dateTime"]
         out.content = new Date(tzString)
     } catch (e) {
         out.status = false
-        out.content = "Unable to connect to the WorldTimeAPI, or an invalid response is provided.\n" +
+        out.content = "Unable to connect to the time API.\n" +
             "Please file an Issue on the GitHub page for this project.\n" +
             `Details: ${e}`
     }
@@ -182,9 +182,9 @@ function mainErrorReporting(content: string) {
         "error_content": content
     })
     qSel("#main_error").classList.remove("hidden")
-    qSel("#main").classList.add("hidden")
+    //qSel("#main").classList.add("hidden")
 
-    throw new Error()
+    //throw new Error()
 }
 
 var updateTimeOffsetInterval = null

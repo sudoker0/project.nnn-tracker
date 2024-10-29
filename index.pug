@@ -47,13 +47,13 @@ html(lang="en")
                         h1.reverse $_seconds
                         p seconds
                 .right_align#info_display
-                    p Time difference from WorldTimeAPI's time: #[span.reverse $_time_offset seconds]
-                    p (#[a(href="https://worldtimeapi.org" target="_blank").reverse https://worldtimeapi.org])
+                    p Time difference from TimeAPI.io's time: #[span.reverse $_time_offset seconds]
+                    p (#[a(href="https://www.timeapi.io" target="_blank").reverse https://www.timeapi.io])
                     p Your timezone (as stated by your browser): #[span.reverse $_timezone]
             #main_error.hidden
                 h1.reverse Error!
                 p $_error_content
         .block.reverse
             .footer
-                h3 Copyright (C) 2023 sudoker0, licensed under the #[span.unreverse MIT license].
+                h3 Copyright (C) 2024 sudoker0, licensed under the #[span.unreverse MIT license].
                 h3 Source code: #[a.unreverse(href="https://github.com/sudoker0/project.nnn-tracker" target="_blank") https://github.com/sudoker0/project.nnn-tracker]
